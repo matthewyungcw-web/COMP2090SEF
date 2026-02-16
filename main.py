@@ -53,9 +53,9 @@ class LibraryManager:
     def view_loan_history(self, user):
         """Display user's loan history."""
         user_loans = [loan for loan in self.loans if loan['user'] == user.user_id]
-        print(f"\n📚 {user.name}'s Loan History ({len(user_loans)} records):")
+        print(f"\n {user.name}'s Loan History ({len(user_loans)} records):")
         for i, loan in enumerate(user_loans, 1):
-            status = "✅ Returned" if loan.get('returned') else "📖 Borrowed"
+            status = " Returned" if loan.get('returned') else " Borrowed"
             print(f"{i}. {loan['book_title']} | {loan['borrow_date']} | {status}")
     
     def borrow_book(self, user, book_title):
@@ -75,7 +75,7 @@ class LibraryManager:
             })
             print(f"✓ {book.title} borrowed by {user.name}")
         else:
-            print("❌ Book not available")
+            print("Book not available")
     
     def return_book(self, user, book_title):
         """Process book return."""
@@ -88,7 +88,7 @@ class LibraryManager:
                 book.available = True
                 print(f"✓ {book_title} returned")
                 return
-        print("❌ No active loan found")
+        print("No active loan found")
 
 def cli_mode(session, library):
     """Authenticated CLI interface."""
@@ -132,14 +132,14 @@ def main():
         launch_gui(session)
     else:
         # CLI login flow
-        print("🔐 Library Login")
+        print("Library Login")
         username = input("Username: ").strip()
         password = input("Password: ").strip()
         
         if session.login(username, password):
             cli_mode(session, library)
         else:
-            print("❌ Login failed")
+            print("Login failed")
 
 if __name__ == "__main__":
     main()
