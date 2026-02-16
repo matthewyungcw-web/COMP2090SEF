@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 COMP2090SEF Library Management System - Complete Entry Point
-Supports login/logout, loan history, borrow/return operations
+Supports login/logout, borrow history, borrow/return operations
 """
 
 import sys
@@ -48,26 +48,26 @@ class LibraryManager:
     """Core library operations."""
     def __init__(self):
         self.books = []  # Replace with Book model/DB
-        self.loans = []  # Loan history
+        self.borrow = []  # borrow history
         
-    def view_loan_history(self, user):
-        """Display user's loan history."""
-        user_loans = [loan for loan in self.loans if loan['user'] == user.user_id]
-        print(f"\n {user.name}'s Loan History ({len(user_loans)} records):")
-        for i, loan in enumerate(user_loans, 1):
-            status = " Returned" if loan.get('returned') else " Borrowed"
-            print(f"{i}. {loan['book_title']} | {loan['borrow_date']} | {status}")
+    def view_borrow_history(self, user):
+        """Display user's borrow history."""
+        user_borrow = [borrow for borrow in self.borrow if borrow['user'] == user.user_id]
+        print(f"\n {user.name}'s borrow History ({len(user_borrow)} records):")
+        for i, borrow in enumerate(user_borrow, 1):
+            status = " Returned" if borrow.get('returned') else " Borrowed"
+            print(f"{i}. {borrow['book_title']} | {borrow['borrow_date']} | {status}")
     
     def borrow_book(self, user, book_title):
         """Process book borrowing."""
         book = next((b for b in self.books if b.title == book_title), None)
         if not book:
-            print("❌ Book not found")
+            print("Book not found")
             return
         
         if book.available:
             book.available = False
-            self.loans.append({
+            self.borrow.append({
                 'user': user.user_id,
                 'book_title': book.title,
                 'borrow_date': datetime.now().strftime("%Y-%m-%d"),
@@ -79,22 +79,22 @@ class LibraryManager:
     
     def return_book(self, user, book_title):
         """Process book return."""
-        for loan in self.loans:
-            if (loan['user'] == user.user_id and 
-                loan['book_title'] == book_title and 
-                not loan.get('returned')):
-                loan['returned'] = datetime.now().strftime("%Y-%m-%d")
+        for borrow in self.borrow:
+            if (borrow['user'] == user.user_id and 
+                borrow['book_title'] == book_title and 
+                not borrow.get('returned')):
+                borrow['returned'] = datetime.now().strftime("%Y-%m-%d")
                 book = next(b for b in self.books if b.title == book_title)
                 book.available = True
-                print(f"✓ {book_title} returned")
+                print(f"{book_title} returned")
                 return
-        print("No active loan found")
+        print("No record found")
 
 def cli_mode(session, library):
     """Authenticated CLI interface."""
     while session.is_authenticated:
         print("\n=== Library Menu ===")
-        print("1. View Loan History")
+        print("1. View borrow History")
         print("2. Borrow Book") 
         print("3. Return Book")
         print("4. Logout")
@@ -102,7 +102,7 @@ def cli_mode(session, library):
         choice = input("Choose (1-4): ").strip()
         
         if choice == "1":
-            library.view_loan_history(session.current_user)
+            library.view_borrow_history(session.current_user)
         elif choice == "2":
             title = input("Book title: ").strip()
             library.borrow_book(session.current_user, title)
