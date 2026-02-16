@@ -34,7 +34,7 @@ class LibrarySession:
         if username in users_db and users_db[username] == password:
             self.current_user = User(name=username, user_id=username)
             self.is_authenticated = True
-            print(f"✓ Login successful: {username}")
+            print(f"Login successful: {username}")
             return True
         return False
     
@@ -42,7 +42,7 @@ class LibrarySession:
         """Clear session."""
         self.current_user = None
         self.is_authenticated = False
-        print("✓ Logged out successfully")
+        print("Logged out successfully")
 
 class LibraryManager:
     """Core library operations."""
@@ -73,7 +73,7 @@ class LibraryManager:
                 'borrow_date': datetime.now().strftime("%Y-%m-%d"),
                 'returned': None
             })
-            print(f"✓ {book.title} borrowed by {user.name}")
+            print(f"{book.title} borrowed by {user.name}")
         else:
             print("Book not available")
     
