@@ -1,4 +1,4 @@
-class User:
+class User:#user info
     def __init__(self, name, user_id, role="member"):
         self.name = name
         self.user_id = user_id
