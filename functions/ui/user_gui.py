@@ -18,7 +18,7 @@ class UserGUI:
         self.root.geometry("900x700")
         self.root.configure(bg='#f0f0f0')
         
-        # Demo books (replace with your models.Book instances)
+        # books demo function
         self.setup_demo_data()
         
         self.show_login_screen()
@@ -26,10 +26,10 @@ class UserGUI:
     def setup_demo_data(self):
         """Initialize demo library data."""
         self.library.books = [
-            {"id": 1, "title": "Python Crash Course", "author": "Eric Matthes", "available": True},
-            {"id": 2, "title": "Clean Code", "author": "Robert C. Martin", "available": False},
-            {"id": 3, "title": "Fluent Python", "author": "Luciano Ramalho", "available": True},
-            {"id": 4, "title": "Design Patterns", "author": "Gang of Four", "available": True}
+            {"id": 1, "title": "book 1", "author": "author a", "available": True},
+            {"id": 2, "title": "book 2", "author": "Jeff au yueng", "available": False},
+            {"id": 3, "title": "book 3", "author": "autho b", "available": True},
+            {"id": 4, "title": "book 4", "author": "Jim", "available": True}
         ]
         self.library.loans = []
     
@@ -73,7 +73,7 @@ class UserGUI:
         if self.session.login(username, password):
             self.show_main_menu()
         else:
-            messagebox.showerror("Login Failed", "Invalid credentials!\nDemo: admin/admin123")
+            messagebox.showerror("Login Failed", "Invalid credentials\nDemo: admin/admin123")
     
     def show_main_menu(self):
         """Display authenticated main menu."""
@@ -84,7 +84,7 @@ class UserGUI:
         # Header
         header_frame = ttk.Frame(self.root)
         header_frame.pack(fill="x", padx=20, pady=10)
-        ttk.Label(header_frame, text=f"Welcome, {self.session.current_user.name}!", 
+        ttk.Label(header_frame, text=f"Welcome, {self.session.current_user.name}", 
                  font=("Arial", 16, "bold")).pack(side="left")
         ttk.Button(header_frame, text="Logout", command=self.logout).pack(side="right")
         
@@ -93,10 +93,10 @@ class UserGUI:
         btn_frame.pack(expand=True, padx=20, pady=10)
         
         # Main action buttons
-        ttk.Button(btn_frame, text="📖 Borrow Book", command=self.borrow_book_screen,
+        ttk.Button(btn_frame, text="Borrow Book", command=self.borrow_book_screen,
                   style="Accent.TButton").pack(fill="x", pady=10)
-        ttk.Button(btn_frame, text="📚 Return Book", command=self.return_book_screen).pack(fill="x", pady=10)
-        ttk.Button(btn_frame, text="📋 Check Borrow Record", command=self.borrow_record_screen).pack(fill="x", pady=10)
+        ttk.Button(btn_frame, text="Return Book", command=self.return_book_screen).pack(fill="x", pady=10)
+        ttk.Button(btn_frame, text="Check Borrow Record", command=self.borrow_record_screen).pack(fill="x", pady=10)
     
     def borrow_book_screen(self):
         """Borrow book interface."""
@@ -192,7 +192,7 @@ class UserGUI:
         else:
             for i, loan in enumerate(user_loans, 1):
                 book = next(b for b in self.library.books if b["id"] == loan["book_id"])
-                status = "✅ Returned" if loan.get("return_date") else "📖 Borrowed"
+                status = "Returned" if loan.get("return_date") else "Borrowed"
                 history_text.insert(tk.END, 
                     f"{i}. {book['title']} by {book['author']}\n"
                     f"   Borrowed: {loan['borrow_date']}\n"
