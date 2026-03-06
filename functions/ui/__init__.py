@@ -1,5 +1,4 @@
-# Recommended content for functions/ui/__init__.py
-"""UI package for COMP2090SEF Library System"""
+"""Graphical User Interface for COMP2090SEF Library System"""
 
 from .user_gui import UserGUI, launch_gui
 
