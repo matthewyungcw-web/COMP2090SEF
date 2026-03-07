@@ -120,9 +120,9 @@ def main():
     library = LibraryManager()
     
     # Demo data
-    library.books = [
+    library.books = [####################################################### might not be working  quite right
         Book(title="book 1", isbn="978-1593279288", available=True),
-        Book(title="book2", isbn="978-0132350884", available=False)
+        Book(title="book 2", isbn="978-0132350884", available=False)
     ]
     
     mode = sys.argv[1] if len(sys.argv) > 1 else "cli"
