@@ -16,17 +16,16 @@ class UserGUI:
         self.root = tk.Tk()
         self.root.title("COMP2090SEF Library Management System")
         self.root.geometry("900x700")
-        self.root.configure(bg='#f0f0f0')
         
         # books demo function
-        self.setup_demo_data()
+        self.books_demo_data()
         
         self.show_login_screen()
     
-    def setup_demo_data(self):
+    def books_demo_data(self):
         """Initialize demo library data."""
         self.library.books = [
-            {"id": 1, "title": "book 1", "author": "author a", "available": True},
+            {"id": 1, "title": "book 1", "author": "Autor", "available": True},
             {"id": 2, "title": "book 2", "author": "Jeff au yueng", "available": False},
             {"id": 3, "title": "book 3", "author": "autho b", "available": True},
             {"id": 4, "title": "book 4", "author": "Jim", "available": True}
@@ -62,7 +61,7 @@ class UserGUI:
         self.username_entry.delete(0, tk.END)
         self.username_entry.insert(0, "admin")
         self.password_entry.delete(0, tk.END)
-        self.password_entry.insert(0, "admin123")
+        self.password_entry.insert(0, "a123")
         self.login()
     
     def login(self):
@@ -84,7 +83,7 @@ class UserGUI:
         # Header
         header_frame = ttk.Frame(self.root)
         header_frame.pack(fill="x", padx=20, pady=10)
-        ttk.Label(header_frame, text=f"Welcome, {self.session.current_user.name}", 
+        ttk.Label(header_frame, text=f"Loged in on: [{self.session.current_user.name}]", 
                  font=("Arial", 16, "bold")).pack(side="left")
         ttk.Button(header_frame, text="Logout", command=self.logout).pack(side="right")
         
@@ -108,7 +107,7 @@ class UserGUI:
         book_listbox = tk.Listbox(self.root, height=8, width=60)
         for book in self.library.books:
             if book["available"]:
-                book_listbox.insert(tk.END, f"ID:{book['id']} - {book['title']} by {book['author']}")
+                book_listbox.insert(tk.END, f"ID: {book['id']} \nName: {book['title']} \nAuthor: {book['author']}")
         book_listbox.pack(pady=10)
         
         ttk.Button(self.root, text="Borrow Selected Book", 
