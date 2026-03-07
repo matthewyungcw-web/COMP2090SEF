@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-COMP2090SEF User GUI - Complete User Interface
+COMP2090SEF User GUI
 Integrates with main.py LibrarySession
 """
 
