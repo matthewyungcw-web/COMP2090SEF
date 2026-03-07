@@ -14,7 +14,7 @@ import json
 sys.path.insert(0, str(Path(__file__).parent / "functions"))
 
 from models import Book, User
-from ui.user_gui import launch_gui  # Your existing GUI
+from ui.user_gui import launch_gui  # GUI
 
 class LibrarySession:
     """Manages user authentication and session state."""
@@ -24,7 +24,7 @@ class LibrarySession:
         
     def login(self, username, password):
         """Authenticate user - replace with MySQL check."""
-        # Demo users - replace with your User model/DB query
+        # Demo users
         users_db = {
             "admin": "admin123",
             "librarian": "lib123", 
@@ -121,8 +121,8 @@ def main():
     
     # Demo data
     library.books = [
-        Book(title="Python Crash Course", isbn="978-1593279288", available=True),
-        Book(title="Clean Code", isbn="978-0132350884", available=False)
+        Book(title="book 1", isbn="978-1593279288", available=True),
+        Book(title="book2", isbn="978-0132350884", available=False)
     ]
     
     mode = sys.argv[1] if len(sys.argv) > 1 else "cli"
