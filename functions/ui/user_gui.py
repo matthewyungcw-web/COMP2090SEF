@@ -112,7 +112,7 @@ class UserGUI:
         
         ttk.Button(self.root, text="Borrow Selected Book", 
                   command=lambda: self.process_borrow(book_listbox)).pack(pady=20)
-        ttk.Button(self.root, text="← Back", command=self.show_main_menu).pack()
+        ttk.Button(self.root, text="Back", command=self.show_main_menu).pack()
     
     def process_borrow(self, listbox):
         """Process book borrowing."""
@@ -132,7 +132,7 @@ class UserGUI:
                 "title": book["title"],
                 "borrow_date": datetime.now().strftime("%Y-%m-%d %H:%M")
             })
-            messagebox.showinfo("Success", f"✓ Borrowed: {book['title']}")
+            messagebox.showinfo("Success", f"Borrowed: {book['title']}")
             self.show_main_menu()
         else:
             messagebox.showerror("Error", "Book not available!")
@@ -155,7 +155,7 @@ class UserGUI:
         loan_listbox.pack(pady=10)
         ttk.Button(self.root, text="Return Selected Book", 
                   command=lambda: self.process_return(loan_listbox)).pack(pady=20)
-        ttk.Button(self.root, text="← Back", command=self.show_main_menu).pack()
+        ttk.Button(self.root, text="Back", command=self.show_main_menu).pack()
     
     def process_return(self, listbox):
         """Process book return."""
@@ -171,7 +171,7 @@ class UserGUI:
                 loan["return_date"] = datetime.now().strftime("%Y-%m-%d %H:%M")
                 book = next(b for b in self.library.books if b["id"] == book_id)
                 book["available"] = True
-                messagebox.showinfo("Success", f"✓ Returned: {book['title']}")
+                messagebox.showinfo("Success", f"Returned: {book['title']}")
                 self.show_main_menu()
                 return
         messagebox.showerror("Error", "Return failed!")
@@ -198,7 +198,7 @@ class UserGUI:
                     f"   Status: {status}\n\n")
         
         history_text.config(state="disabled")
-        ttk.Button(self.root, text="← Back", command=self.show_main_menu).pack(pady=10)
+        ttk.Button(self.root, text="Back", command=self.show_main_menu).pack(pady=10)
     
     def logout(self):
         """Process logout."""
