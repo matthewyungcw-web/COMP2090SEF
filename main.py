@@ -52,14 +52,16 @@ class LibraryManager:
         
     def view_borrow_history(self, user):
         """Display user's borrow history."""
+        book_title = input("Book title: ").strip()
         user_borrow = [borrow for borrow in self.borrow if borrow['user'] == user.user_id]
         print(f"\n {user.name}'s borrow History ({len(user_borrow)} records):")
         for i, borrow in enumerate(user_borrow, 1):
             status = " Returned" if borrow.get('returned') else " Borrowed"
             print(f"{i}. {borrow['book_title']} | {borrow['borrow_date']} | {status}")
     
-    def borrow_book(self, user, book_title):
+    def borrow_book(self, user):
         """Process book borrowing."""
+        book_title = input("Book title: ").strip()
         book = next((b for b in self.books if b.title == book_title), None)
         if not book:
             print("Book not found")
@@ -77,7 +79,7 @@ class LibraryManager:
         else:
             print("Book not available")
     
-    def return_book(self, user, book_title):
+    def return_book(self, user):
         """Process book return."""
         for borrow in self.borrow:
             if (borrow['user'] == user.user_id and 
@@ -104,11 +106,9 @@ def cli_mode(session, library):
         if choice == "1":
             library.view_borrow_history(session.current_user)
         elif choice == "2":
-            title = input("Book title: ").strip()
-            library.borrow_book(session.current_user, title)
+            library.borrow_book(session.current_user)
         elif choice == "3":
-            title = input("Book title: ").strip()
-            library.return_book(session.current_user, title)
+            library.return_book(session.current_user)
         elif choice == "4":
             session.logout()
             break
