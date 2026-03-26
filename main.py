@@ -96,16 +96,36 @@ class LibraryManager:
                 return
         print("No record found")
 
+    
+    def add_book(self,user,admin_acc):
+        if admin_acc == True:
+            book_title = input("Book title: ").strip()
+            book_isbn=input("Book id: ").strip()
+            self.books.append(Book(title=book_title, isbn=book_isbn,available=True))
+            print("Book added")
+        else:
+            print("admin required for this function")
+
+
+
+
+
+
 def cli_mode(session, library):
     """Authenticated CLI interface."""
+    if (username =="admin"):
+        admin_acc= True
+    else:
+        admin_acc=False
     while session.is_authenticated:
         print("\n=== Library Menu ===")
         print("1. View borrow History")
         print("2. Borrow Book") 
         print("3. Return Book")
-        print("4. Logout")
+        print("4. Add Book(admin account required)")
+        print("5. Logout")
         
-        choice = input("Choose (1-4): ").strip()
+        choice = input("Choose (1-5): ").strip()
         
         if choice == "1":
             library.view_borrow_history(session.current_user)
@@ -114,6 +134,8 @@ def cli_mode(session, library):
         elif choice == "3":
             library.return_book(session.current_user)
         elif choice == "4":
+            libary.add_book(session.current_user,admin_acc)
+        elif choice == "5":
             session.logout()
             break
         else:
