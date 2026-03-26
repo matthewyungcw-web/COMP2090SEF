@@ -25,10 +25,10 @@ class UserGUI:
     def books_demo_data(self):
         """Initialize demo library data."""
         self.library.books = [
-            {"id": 1, "title": "book 1", "author": "Autor", "available": True},
-            {"id": 2, "title": "book 2", "author": "Jeff au yueng", "available": False},
-            {"id": 3, "title": "book 3", "author": "autho b", "available": True},
-            {"id": 4, "title": "book 4", "author": "Jim", "available": True}
+            {"id": 01, "title": "book 1", "author": "Autor", "available": True},
+            {"id": 02, "title": "book 2", "author": "Jeff au yueng", "available": False},
+            {"id": 03, "title": "book 3", "author": "autho b", "available": True},
+            {"id": 04, "title": "book 4", "author": "Jim", "available": True}
         ]
         self.library.loans = []
     
