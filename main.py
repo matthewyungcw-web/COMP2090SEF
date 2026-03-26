@@ -83,7 +83,7 @@ class LibraryManager:
         """Process book return."""
         for borrow in self.borrow:
             if (borrow['user'] == user.user_id and not borrow.get('returned')):
-                print("Currently borrowed ",borrow["book_title"])
+                print("Currently borrowed:",borrow["book_title"])
         book_title = input("Book title: ").strip()
         for borrow in self.borrow:
             if (borrow['user'] == user.user_id and 
