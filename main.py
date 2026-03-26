@@ -121,8 +121,10 @@ def main():
     
     # Demo data
     library.books = [####################################################### might not be working  quite right
-        Book(title="book 1", isbn="978-1593279288", available=True),
-        Book(title="book 2", isbn="978-0132350884", available=False)
+        Book(title="book 1", isbn="9123", available=True),
+        Book(title="book 2", isbn="9223", available=False),
+        Book(title="book 3", isbn="9323", available=True),
+        Book(title="book 4", isbn="9423", available=True)        
     ]
     
     mode = sys.argv[1] if len(sys.argv) > 1 else "cli"
