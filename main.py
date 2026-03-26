@@ -124,7 +124,7 @@ def main():
     library = LibraryManager()
     
     # Demo data
-    library.books = [####################################################### might not be working  quite right
+    library.books = [
         Book(title="book 1", isbn="9123", available=True),
         Book(title="book 2", isbn="9223", available=False),
         Book(title="book 3", isbn="9323", available=True),
