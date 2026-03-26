@@ -113,7 +113,7 @@ class LibraryManager:
                 bavai = "Yes"
             else:
                 bavai ="No"
-            print("Title: ", books.title,", isnb: ",books.isbn,", available: ",bavai)
+            print("Title: ", books.title,", isbn: ",books.isbn,", available: ",bavai)
 
 
 
