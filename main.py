@@ -107,6 +107,18 @@ class LibraryManager:
             print("admin required for this function")
 
 
+    def show_all_books(self):
+        for books in self.books:
+            if books.available == True:
+                bavai = "Yes"
+            else:
+                bavai ="No"
+            print("Title: ", books.title,", isnb: ",books.isbn,", available: ",bavai)
+
+
+
+
+
 
 
 
@@ -123,9 +135,10 @@ def cli_mode(session, library):
         print("2. Borrow Book") 
         print("3. Return Book")
         print("4. Add Book(admin account required)")
-        print("5. Logout")
-        
-        choice = input("Choose (1-5): ").strip()
+        print("5. Show all books")
+        print("6. Logout")
+
+        choice = input("Choose (1-6): ").strip()
         
         if choice == "1":
             library.view_borrow_history(session.current_user)
@@ -134,8 +147,10 @@ def cli_mode(session, library):
         elif choice == "3":
             library.return_book(session.current_user)
         elif choice == "4":
-            libary.add_book(session.current_user,admin_acc)
+            library.add_book(session.current_user,admin_acc)
         elif choice == "5":
+            library.show_all_books()
+        elif choice == "6":
             session.logout()
             break
         else:
