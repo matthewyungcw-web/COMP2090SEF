@@ -51,10 +51,9 @@ Only admin users can add new books to the system.
 
 ## Modules
 
-- `sys`
+- `messagebox`
+- `scrolledtext`
 - `traceback`
-- `subprocess`
-- `pathlib.Path`
 - `tkinter`
 - `datetime`
 
