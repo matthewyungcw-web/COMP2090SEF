@@ -51,6 +51,8 @@ Only admin users can add new books to the system.
 
 ## Modules
 
+Please download the following modules before execution.
+
 - `messagebox`
 - `scrolledtext`
 - `traceback`
