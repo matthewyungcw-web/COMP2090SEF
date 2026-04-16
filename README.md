@@ -58,10 +58,8 @@ Admin users can add new books to the system.
 
 Please download the following modules before execution.
 
-- `messagebox`
-- `scrolledtext`
-- `traceback`
 - `tkinter`
+- `traceback`
 - `datetime`
 
 ## Contributors
