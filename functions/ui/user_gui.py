@@ -27,7 +27,7 @@ class UserGUI:
     # === Following methods are for matrix and shell sort ===
 
     def books_to_matrix(self, available_only=False):
-        """Convert Book objects to matrix data structure."""
+        """Convert Book objects to matrix data structure"""
         matrix = []
         for book in self.library.books:
             if not available_only or book.available:
@@ -35,7 +35,7 @@ class UserGUI:
         return matrix
 
     def shell_sort_books(self, matrix, column_index=1, ascending=True):
-        """Shell sort for 2D book matrix."""
+        """Shell sort for 2D book matrix"""
         n = len(matrix)
         gap = n // 2
         while gap > 0:
@@ -62,7 +62,7 @@ class UserGUI:
         return matrix
 
     def load_books_to_listbox(self, listbox, matrix):
-        """Reload listbox from sorted matrix."""
+        """Reload listbox from sorted matrix"""
         listbox.delete(0, tk.END)
         for row in matrix:
             book_id, title, author, available = row
@@ -70,7 +70,7 @@ class UserGUI:
                 listbox.insert(tk.END, f"id: {book_id} | {title} by {author}")
 
     def sort_books_action(self, listbox, ascending=True):
-        """Sort books by title using Shell sort and refresh listbox."""
+        """Sort books by title using Shell sort and refresh listbox"""
         book_matrix = self.books_to_matrix(available_only=True)
         sorted_matrix = self.shell_sort_books(book_matrix, column_index=1, ascending=ascending)
         self.load_books_to_listbox(listbox, sorted_matrix)
@@ -95,7 +95,7 @@ class UserGUI:
         self.library.loans = []
     
     def show_login_screen(self):
-        """Display login interface."""
+        """Display login interface"""
         # Clear window
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -119,25 +119,29 @@ class UserGUI:
         """ttk.Button(login_frame, text="Demo (admin/admin123)", command=lambda: self.demo_login()).pack()"""
     
     def demo_login(self):
-        """Quick demo login."""
+        """Quick demo login, disabled"""
         self.username_entry.delete(0, tk.END)
-        self.username_entry.insert(0, "admin")
+        """self.username_entry.insert(0, "admin")"""
         self.password_entry.delete(0, tk.END)
-        self.password_entry.insert(0, "admin123")
+        """self.password_entry.insert(0, "admin123")"""
         self.login()
     
     def login(self):
-        """Process login."""
+        """Process login"""
         username = self.username_entry.get()
         password = self.password_entry.get()
-        
+
         if self.session.login(username, password):
-            self.show_main_menu()
+            if self.session.current_user.role == "admin":
+                self.root.destroy()
+                AdminGUI(self.session, self.library)
+            else:
+                self.show_main_menu()
         else:
-            messagebox.showerror("Login Failed", "Invalid credentials\nDemo: admin/admin123")
+            messagebox.showerror("Login Failed", "Invalid credentials")
     
     def show_main_menu(self):
-        """Display authenticated main menu."""
+        """Display authenticated main menu"""
         # Clear window
         for widget in self.root.winfo_children():
             widget.destroy()
@@ -158,12 +162,12 @@ class UserGUI:
                   style="Accent.TButton").pack(fill="x", pady=10)
         ttk.Button(btn_frame, text="Return Book", command=self.return_book_screen).pack(fill="x", pady=10)
         ttk.Button(btn_frame, text="Check Borrow Record", command=self.borrow_record_screen).pack(fill="x", pady=10)
-        if self.session.current_user.role == "admin":
+        """if self.session.current_user.role == "admin":
             ttk.Button(btn_frame, text="Add Book", command=self.add_book_screen).pack(fill="x", pady=10)
-    
+    """
     # === BEFORE ===
     """def borrow_book_screen(self):
-        "Borrow book interface."
+        "Borrow book interface"
         self.clear_window()
         ttk.Label(self.root, text="Borrow Book", font=("Arial", 20, "bold")).pack(pady=20)
         
@@ -181,7 +185,7 @@ class UserGUI:
 
     # === AFTER (New version with matrix + Shell sort buttons) ===
     def borrow_book_screen(self):
-        """Borrow book interface."""
+        """Borrow book interface"""
         self.clear_window()
         ttk.Label(self.root, text="Borrow Book", font=("Arial", 20, "bold")).pack(pady=20)
 
@@ -217,7 +221,7 @@ class UserGUI:
         ttk.Button(self.root, text="Back", command=self.show_main_menu).pack()
 
     def process_borrow(self, listbox):
-        """Process book borrowing."""
+        """Process book borrowing"""
         selection = listbox.curselection()
         if not selection:
             messagebox.showwarning("No Selection", "Please select a book!")
@@ -241,7 +245,7 @@ class UserGUI:
             messagebox.showerror("Error", "Book not available!")
     
     def return_book_screen(self):
-        """Return book interface."""
+        """Return book interface"""
         self.clear_window()
         ttk.Label(self.root, text="Return Book", font=("Arial", 20, "bold")).pack(pady=20)
         
@@ -262,7 +266,7 @@ class UserGUI:
         ttk.Button(self.root, text="Back", command=self.show_main_menu).pack()
     
     def process_return(self, listbox):
-        """Process book return."""
+        """Process book return"""
         selection = listbox.curselection()
         if not selection:
             messagebox.showwarning("No Selection", "Please select a loan to return!")
@@ -283,7 +287,7 @@ class UserGUI:
         messagebox.showerror("Error", "Return failed!")
     
     def borrow_record_screen(self):
-        """Show borrow history."""
+        """Show borrow history"""
         self.clear_window()
         ttk.Label(self.root, text="Your Borrow Record", font=("Arial", 20, "bold")).pack(pady=20)
         
@@ -309,7 +313,7 @@ class UserGUI:
         ttk.Button(self.root, text="Back", command=self.show_main_menu).pack(pady=10)
     
     def add_book_screen(self):
-        """Add book interface (admin only)."""
+        """Add book interface (admin only)"""
         self.clear_window()
         ttk.Label(self.root, text="Add Book", font=("Arial", 20, "bold")).pack(pady=20)
         
@@ -328,8 +332,8 @@ class UserGUI:
         ttk.Button(self.root, text="Add Book", command=lambda: self.process_add_book(title_entry, id_entry, author_entry)).pack(pady=20)
         ttk.Button(self.root, text="Back", command=self.show_main_menu).pack()
     
-    def process_add_book(self, title_entry, id_entry, author_entry):
-        """Process adding a book."""
+    """def process_add_book(self, title_entry, id_entry, author_entry):
+        Process adding a book, original version outside of admingui
         title = title_entry.get().strip()
         id = id_entry.get().strip()
         author = author_entry.get().strip()
@@ -340,22 +344,105 @@ class UserGUI:
             return
         
         self.library.add_book(self.session.current_user, title, id, author)
-        messagebox.showinfo("Success", f"Book '{title}' added successfully!")
-        self.show_main_menu()
+        messagebox.showinfo("Success", f"Book '{title' added successfully!")
+        self.show_main_menu()"""
     
     def logout(self):
-        """Process logout."""
+        """Process logout"""
         self.session.logout()
         self.show_login_screen()
     
     def clear_window(self):
-        """Clear all widgets except root."""
+        """Clear all widgets except root"""
         for widget in self.root.winfo_children():
             widget.destroy()
     
     def launch(self):
-        """Start the GUI."""
+        """Start the GUI"""
         self.root.mainloop()
+
+class AdminGUI(UserGUI):
+    """Admin GUI inherit from UserGUI"""
+
+    def __init__(self, session, library):
+        super().__init__(session, library)
+        self.show_admin_menu()
+
+    def show_admin_menu(self):
+        self.clear_window()
+        ttk.Label(self.root, text="Admin page", font=("Arial", 20, "bold")).pack(pady=20)
+        ttk.Button(self.root, text="Add a New Book", command=self.add_book_screen).pack(pady=5)
+        ttk.Button(self.root, text="current available books", command=self.show_books).pack(pady=5)
+        ttk.Button(self.root, text="Logout", command=self.logout).pack(pady=5)
+
+    def add_book_screen(self):
+        """admin ver add book"""
+        self.clear_window()
+        ttk.Label(self.root, text="Add Book", font=("Arial", 20, "bold")).pack(pady=20)
+
+        ttk.Label(self.root, text="Title:").pack()
+        title_entry = ttk.Entry(self.root, width=40)
+        title_entry.pack()
+
+        ttk.Label(self.root, text="ID:").pack()
+        id_entry = ttk.Entry(self.root, width=40)
+        id_entry.pack()
+
+        ttk.Label(self.root, text="Author:").pack()
+        author_entry = ttk.Entry(self.root, width=40)
+        author_entry.pack()
+
+        ttk.Button(
+            self.root, 
+            text="Add Book", 
+            command=lambda: self.process_add_book(title_entry, id_entry, author_entry)
+        ).pack(pady=20)
+
+        ttk.Button(self.root, text="Back", command=self.show_admin_menu).pack()
+
+    def process_add_book(self, title_entry, id_entry, author_entry):
+        """process add book"""
+        title = title_entry.get().strip()
+        book_id = id_entry.get().strip()
+        author = author_entry.get().strip()
+
+        if not title or not book_id or not author:
+            messagebox.showerror("Error", "Please fill all fields.")
+            return
+
+        self.library.add_book(self.session.current_user, title, book_id, author)
+        messagebox.showinfo("Success", f"Book '{title}' added.")
+        self.show_admin_menu()
+
+    def show_books(self):
+        """admin-show current available book"""
+        self.clear_window()
+
+        ttk.Label(self.root, text="current books in library:", font=("Arial", 14)).pack(pady=10)
+        book_listbox = tk.Listbox(self.root, height=8, width=80)
+        book_listbox.pack(pady=10)
+
+        # initial load - CHANGED from direct Book loop to matrix
+        """currently only shows available ones instead of all"""
+        self.load_books_to_listbox(book_listbox, self.books_to_matrix(available_only=True))
+
+        sort_frame = ttk.Frame(self.root)
+        sort_frame.pack(pady=10)
+
+        ttk.Button(
+            sort_frame,
+            text="Sort Title in Ascending Order",
+            command=lambda: self.sort_books_action(book_listbox, True)
+        ).pack(side="left", padx=5)
+
+        ttk.Button(
+            sort_frame,
+            text="Sort Title in Descending Order",
+            command=lambda: self.sort_books_action(book_listbox, False)
+        ).pack(side="left", padx=5)
+
+        ttk.Button(self.root, text="Back", command=self.show_admin_menu).pack()
+
 
 def launch_gui(session, library=None):
     """Entry point from main.py."""
