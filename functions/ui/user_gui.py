@@ -43,8 +43,8 @@ class UserGUI:
                 temp = matrix[i]
                 j = i
                 while j >= gap:
-                    left = str(matrix[j - gap][column_index]).lower()
-                    right = str(temp[column_index]).lower()
+                    left = matrix[j - gap][column_index].lower()
+                    right = temp[column_index].lower()
                     if ascending:
                         if left > right:
                             matrix[j] = matrix[j - gap]
