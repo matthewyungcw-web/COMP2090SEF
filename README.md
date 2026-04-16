@@ -40,9 +40,9 @@ Admin users can add new books to the system.
 
 Watch these short videos embedded below for a quick overview of the Library Management System.
 
-[![Task 1: Course Project Report](https://img.youtube.com/vi/gTQSD_cej58/0.jpg)](https://youtu.be/gTQSD_cej58)
+[![Task 1: Course Project Report](https://img.youtube.com/vi/0RV7QgzztCU/0.jpg)](https://youtu.be/0RV7QgzztCU)
 
-[![Task 2: Study Report](https://img.youtube.com/vi/0RV7QgzztCU/0.jpg)](https://youtu.be/0RV7QgzztCU)
+[![Task 2: Study Report](https://img.youtube.com/vi/gTQSD_cej58/0.jpg)](https://youtu.be/gTQSD_cej58)
 
 ## User Experience(normal user)
 
