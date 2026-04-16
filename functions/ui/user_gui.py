@@ -372,7 +372,7 @@ class AdminGUI(UserGUI):
         self.clear_window()
         ttk.Label(self.root, text="Admin page", font=("Arial", 20, "bold")).pack(pady=20)
         ttk.Button(self.root, text="Add a New Book", command=self.add_book_screen).pack(pady=5)
-        ttk.Button(self.root, text="current available books", command=self.show_books).pack(pady=5)
+        ttk.Button(self.root, text="Show all books", command=self.show_books).pack(pady=5)
         ttk.Button(self.root, text="Logout", command=self.logout).pack(pady=5)
 
     def add_book_screen(self):
