@@ -41,6 +41,7 @@ Admin users can add new books to the system.
 Watch these short videos embedded below for a quick overview of the Library Management System.
 
 [![Task 1: Course Project Report](https://img.youtube.com/vi/gTQSD_cej58/0.jpg)](https://youtu.be/gTQSD_cej58)
+
 <video width="720" height="405" controls>
   <source src="https://youtu.be/gTQSD_cej58" type="video/youtube">
   Your browser does not support embedded YouTube videos.
