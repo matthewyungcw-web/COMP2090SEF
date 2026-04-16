@@ -312,8 +312,8 @@ class UserGUI:
         history_text.config(state="disabled")
         ttk.Button(self.root, text="Back", command=self.show_main_menu).pack(pady=10)
     
-    def add_book_screen(self):
-        """Add book interface (admin only)"""
+    #def add_book_screen(self):
+        """Add book interface (admin only)
         self.clear_window()
         ttk.Label(self.root, text="Add Book", font=("Arial", 20, "bold")).pack(pady=20)
         
@@ -330,8 +330,8 @@ class UserGUI:
         author_entry.pack(pady=5)
 
         ttk.Button(self.root, text="Add Book", command=lambda: self.process_add_book(title_entry, id_entry, author_entry)).pack(pady=20)
-        ttk.Button(self.root, text="Back", command=self.show_main_menu).pack()
-    
+        ttk.Button(self.root, text="Back", command=self.show_main_menu).pack()"""
+        
     """def process_add_book(self, title_entry, id_entry, author_entry):
         Process adding a book, original version outside of admingui
         title = title_entry.get().strip()
@@ -365,6 +365,7 @@ class AdminGUI(UserGUI):
     """Admin GUI inherit from UserGUI"""
 
     def __init__(self, session, library):
+        """inherit from usergui"""
         super().__init__(session, library)
         self.show_admin_menu()
 
@@ -405,11 +406,11 @@ class AdminGUI(UserGUI):
         title = title_entry.get().strip()
         book_id = id_entry.get().strip()
         author = author_entry.get().strip()
-
+        """check to prevent empy imput"""
         if not title or not book_id or not author:
             messagebox.showerror("Error", "Please fill all fields.")
             return
-
+        """confirmation"""
         self.library.add_book(self.session.current_user, title, book_id, author)
         messagebox.showinfo("Success", f"Book '{title}' added.")
         self.show_admin_menu()
@@ -423,7 +424,7 @@ class AdminGUI(UserGUI):
         book_listbox.pack(pady=10)
 
         # initial load - CHANGED from direct Book loop to matrix
-        """currently only shows available ones instead of all  """"""   it is fixed and should show all now"""
+        """it is fixed and should show all books now"""
         self.load_books_to_listbox(book_listbox, self.books_to_matrix(available_only=False))
 
         sort_frame = ttk.Frame(self.root)
