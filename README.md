@@ -28,21 +28,13 @@ Admin users can add new books to the system.
 
 ## Other Users
 
-### 1
-- **Username:** `librarian`
-- **Password:** `lib123`
-
-### 2
-- **Username:** `student1`
-- **Password:** `pass123`
-
-### 3
-- **Username:** `a`
-- **Password:** `a`
-
-### 4
-- **Username:** `b`
-- **Password:** `b`
+| Role        | Username  | Password |
+| ----------- | --------- | -------- |
+| Admin       | admin     | admin123 |
+| User        | librarian | lib123   |
+| User        | student1  | pass123  |
+| User        | a         | a        |
+| User        | b         | b        |
 
 
 ## User Experience(normal user)
