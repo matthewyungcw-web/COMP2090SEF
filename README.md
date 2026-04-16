@@ -30,12 +30,25 @@ Admin users can add new books to the system.
 
 | Role        | Username  | Password |
 | ----------- | --------- | -------- |
-| Admin       | admin     | admin123 |
-| User        | librarian | lib123   |
-| User        | student1  | pass123  |
-| User        | a         | a        |
-| User        | b         | b        |
+| Admin       | `admin`     | `admin123` |
+| User        | `librarian` | `lib123`   |
+| User        | `student1`  | `pass123`  |
+| User        | `a`         | `a`        |
+| User        | `b`         | `b`        |
 
+## 5-minute Introduction Videos
+
+Watch these short demo videos embedded below for a quick overview of the Library Management System.
+
+<video width="720" height="405" controls>
+  <source src="https://youtu.be/0RV7QgzztCU" type="video/youtube">
+  Your browser does not support embedded YouTube videos.
+</video>
+
+<video width="720" height="405" controls>
+  <source src="https://youtu.be/gTQSD_cej58" type="video/youtube">
+  Your browser does not support embedded YouTube videos.
+</video>
 
 ## User Experience(normal user)
 
