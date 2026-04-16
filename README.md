@@ -1,5 +1,5 @@
 # COMP 2090SEF - Data Structures, Algorithms And Problem Solving
-# Library Management System
+# Group 16: Library Management System
 
 Library Management System aims for managing books, borrowing activities, and records with a simple graphical user interface.
 
