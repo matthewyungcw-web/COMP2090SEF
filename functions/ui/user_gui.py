@@ -311,7 +311,7 @@ class UserGUI:
         
         history_text.config(state="disabled")
         ttk.Button(self.root, text="Back", command=self.show_main_menu).pack(pady=10)
-    #old add book func below
+    #old add book func below before being moved to admingui part
     #def add_book_screen(self):
         """Add book interface (admin only)
         self.clear_window()
