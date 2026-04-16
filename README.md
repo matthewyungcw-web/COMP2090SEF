@@ -40,6 +40,10 @@ Admin users can add new books to the system.
 
 Watch these short demo videos embedded below for a quick overview of the Library Management System.
 
+[![Library Management System Demo 1](https://img.youtube.com/vi/0RV7QgzztCU/0.jpg)](https://youtu.be/0RV7QgzztCU)
+
+[![Library Management System Demo 2](https://img.youtube.com/vi/gTQSD_cej58/0.jpg)](https://youtu.be/gTQSD_cej58)
+
 <video width="720" height="405" controls>
   <source src="https://youtu.be/0RV7QgzztCU" type="video/youtube">
   Your browser does not support embedded YouTube videos.
