@@ -415,16 +415,16 @@ class AdminGUI(UserGUI):
         self.show_admin_menu()
 
     def show_books(self):
-        """admin-show current available book"""
+        """admin-show all book"""
         self.clear_window()
 
-        ttk.Label(self.root, text="current books in library:", font=("Arial", 14)).pack(pady=10)
+        ttk.Label(self.root, text="All books from libary", font=("Arial", 14)).pack(pady=10)
         book_listbox = tk.Listbox(self.root, height=8, width=80)
         book_listbox.pack(pady=10)
 
         # initial load - CHANGED from direct Book loop to matrix
-        """currently only shows available ones instead of all"""
-        self.load_books_to_listbox(book_listbox, self.books_to_matrix(available_only=True))
+        """currently only shows available ones instead of all  """"""   it is fixed and should show all now"""
+        self.load_books_to_listbox(book_listbox, self.books_to_matrix(available_only=False))
 
         sort_frame = ttk.Frame(self.root)
         sort_frame.pack(pady=10)
