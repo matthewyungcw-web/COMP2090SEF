@@ -17,9 +17,14 @@ Use the following credentials to log in as an administrator:
 - **Username:** `admin`
 - **Password:** `admin123`
 
+Use the following credentials to log in as an user:
+
+- **Username:** `student1`
+- **Password:** `pass123`
+
 ## Admin Access
 
-Only admin users can add new books to the system.
+Admin users can add new books to the system.
 
 ## Other Users
 
@@ -40,7 +45,7 @@ Only admin users can add new books to the system.
 - **Password:** `b`
 
 
-## User Experience
+## User Experience(normal user)
 
 1. Run main.py
 2. Login with correct credentials
@@ -48,6 +53,14 @@ Only admin users can add new books to the system.
 4. Check borrow records
 5. Return book
 6. Logout
+
+## User Experience(admin user)
+
+1. Run main.py
+2. Login with correct credentials
+3. add book
+4. view available books 
+5. Logout
 
 ## Modules
 
